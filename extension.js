@@ -15,7 +15,7 @@ function activate(context) {
     'obj-shorthand': true,
     'no-strict': true,
     'commonjs': true
-  }, vscode.workspace.getConfiguration('lebab').keys);
+  }, vscode.workspace.getConfiguration('lebab').transforms);
 
   const convert = vscode.commands.registerTextEditorCommand('lebab.convert', (textEditor) => {
     let text = textEditor.document.getText();

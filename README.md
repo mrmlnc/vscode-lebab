@@ -27,6 +27,14 @@ By default enabled only safe transforms:
   * obj-shorthand
   * no-strict
   * commonjs
+  
+For example:
+
+```json
+"lebab.transforms": {
+  "class": true
+}
+```
 
 ## Keyboard shortcuts
 

@@ -30,7 +30,7 @@
       "type": "object",
       "title": "Lebab configuration",
       "properties": {
-        "lebab.keys": {
+        "lebab.transforms": {
           "type": "object",
           "default": {},
           "description": "Convert your old-fashioned code with a specific transformation."
