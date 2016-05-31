@@ -1,0 +1,63 @@
+{
+  "name": "vscode-lebab",
+  "displayName": "Lebab",
+  "description": "Lebab transpiles your ES5 code to ES2015.",
+  "version": "1.0.0",
+  "publisher": "mrmlnc",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "icon": "icon.png",
+  "homepage": "https://github.com/mrmlnc/vscode-lebab/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrmlnc/vscode-lebab"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:lebab.convert"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [{
+      "command": "lebab.convert",
+      "title": "Lebab: convert JavaScript code from ES5 to ES2015"
+    }],
+    "configuration": {
+      "type": "object",
+      "title": "Lebab configuration",
+      "properties": {
+        "lebab.keys": {
+          "type": "object",
+          "default": {},
+          "description": "Convert your old-fashioned code with a specific transformation."
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "vscode": "^0.11.12",
+    "xo": "^0.15.1"
+  },
+  "dependencies": {
+    "lebab": "^1.2.0"
+  },
+  "scripts": {
+    "test": "xo"
+  },
+  "xo": {
+    "rules": {
+      "indent": [2, 2, { "SwitchCase": 1 }],
+      "arrow-parens": [2, "always"],
+      "object-curly-spacing": [2, "always"],
+      "babel/object-curly-spacing": 0,
+      "space-before-function-paren": [2, "never"]
+    },
+    "envs": [
+      "node"
+    ]
+  }
+}
