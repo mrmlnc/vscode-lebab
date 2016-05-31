@@ -4,20 +4,22 @@ const vscode = require('vscode');
 const Transformer = require('lebab/lib/transformer');
 
 function activate(context) {
-  const options = Object.assign({
-    'class': false,
-    'template': false,
+  const defaultOptions = {
     'arrow': true,
     'let': true,
-    'default-param': false,
     'arg-spread': true,
     'obj-method': true,
     'obj-shorthand': true,
     'no-strict': true,
     'commonjs': true
-  }, vscode.workspace.getConfiguration('lebab').transforms);
+  };
 
   const convert = vscode.commands.registerTextEditorCommand('lebab.convert', (textEditor) => {
+    const options = Object.assign(
+      defaultOptions,
+      vscode.workspace.getConfiguration('lebab').transforms
+    );
+
     let text = textEditor.document.getText();
     const lebab = new Transformer(options);
 
