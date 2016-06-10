@@ -2,7 +2,7 @@
   "name": "vscode-lebab",
   "displayName": "Lebab",
   "description": "Lebab transpiles your ES5 code to ES2015.",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "publisher": "mrmlnc",
   "license": "MIT",
   "engines": {
