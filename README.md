@@ -1,22 +1,32 @@
 # VS Code Plugin for Lebab
 
-> [Lebab](https://github.com/mohebifar/lebab) transpiles your ES5 code to ES2015. It does exactly the opposite of what Babel does.
+> Turn your ES5 code into readable ES6 (sugar-syntax). It does the opposite of what Babel does.
 
-![lebab](https://cloud.githubusercontent.com/assets/7034281/15670926/9803ba10-2730-11e6-9501-69427ce21902.gif)
+![VS Code Plugin for Lebab](https://cloud.githubusercontent.com/assets/7034281/17309754/0265b054-5849-11e6-9e64-51d4a19f1180.gif)
 
 ## Install
 
-To install, press `F1` and select `Extensions: Install Extensions` and then search for and select `lebab`.
+  * Press `F1` and select `Extensions: Install Extensions`.
+  * Search for and select `lebab`.
 
-This plugin does not require global Lebab installation.
+See the [extension installation guide](https://code.visualstudio.com/docs/editor/extension-gallery) for details.
 
 ## Usage
 
 Press `F1` and run the command named `Lebab: convert JavaScript code from ES5 to ES2015`.
 
-## Options
+## Supported languages
 
-All options are available in the [official repository Lebab](https://github.com/mohebifar/lebab/blob/master/README.md#features-and-known-limitations).
+  * JavaScript
+
+## Supported settings
+
+**lebab.transforms**
+
+  * Type: `Array`
+  * Default: `['arrow', 'let', 'arg-spread', 'obj-method', 'obj-shorthand', 'no-strict', 'commonjs']`
+
+All transforms are available in the [official repository Lebab](https://github.com/mohebifar/lebab/blob/master/README.md#features-and-known-limitations).
 
 By default enabled only safe transforms:
 
@@ -27,14 +37,13 @@ By default enabled only safe transforms:
   * obj-shorthand
   * no-strict
   * commonjs
-  
-For example:
 
-```json
-"lebab.transforms": {
-  "class": true
-}
-```
+**lebab.skipWarnings**
+
+  * Type: `Boolean`
+  * Default: `true`
+
+Some transforms generate warnings when they cannot be applied. This option disables these messages.
 
 ## Keyboard shortcuts
 

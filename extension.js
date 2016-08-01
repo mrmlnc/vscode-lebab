@@ -1,32 +1,54 @@
 'use strict';
 
 const vscode = require('vscode');
-const Transformer = require('lebab/lib/transformer');
+const lebab = require('lebab');
+
+function makeDiagnostic(problem, stringLength) {
+  return {
+    severity: vscode.DiagnosticSeverity.Warning,
+    range: {
+      start: {
+        line: problem.line - 1,
+        character: 0
+      },
+      end: {
+        line: problem.line - 1,
+        character: stringLength
+      }
+    },
+    source: 'lebab',
+    message: `${problem.msg} [${problem.type}]`
+  };
+}
 
 function activate(context) {
-  const defaultOptions = {
-    'arrow': true,
-    'let': true,
-    'arg-spread': true,
-    'obj-method': true,
-    'obj-shorthand': true,
-    'no-strict': true,
-    'commonjs': true
-  };
-
   const convert = vscode.commands.registerTextEditorCommand('lebab.convert', (textEditor) => {
-    const options = Object.assign(
-      defaultOptions,
-      vscode.workspace.getConfiguration('lebab').transforms
-    );
+    const options = vscode.workspace.getConfiguration('lebab');
 
-    let text = textEditor.document.getText();
-    const lebab = new Transformer(options);
+    const text = textEditor.document.getText();
+    let result = {
+      code: text,
+      warnings: []
+    };
 
     try {
-      text = lebab.run(text);
+      result = lebab.transform(text, options.transforms);
     } catch (err) {
       console.error(err);
+    }
+
+    if (!options.skipWarnings) {
+      const collection = vscode.languages.createDiagnosticCollection();
+      const diagnostics = result.warnings.map((problem) => {
+        const line = textEditor.document.lineAt(problem.line - 1);
+        return makeDiagnostic(problem, line.text.length);
+      });
+
+      collection.set(textEditor.document.uri, diagnostics);
+
+      vscode.window.onDidChangeActiveTextEditor(() => {
+        collection.delete(textEditor.document.uri);
+      });
     }
 
     textEditor.edit((editBuilder) => {
@@ -36,7 +58,7 @@ function activate(context) {
       const end = new vscode.Position(document.lineCount - 1, lastLine.text.length);
       const range = new vscode.Range(start, end);
 
-      editBuilder.replace(range, text);
+      editBuilder.replace(range, result.code);
     });
   });
 
@@ -44,9 +66,3 @@ function activate(context) {
 }
 
 exports.activate = activate;
-
-function deactivate() {
-
-}
-
-exports.deactivate = deactivate;
