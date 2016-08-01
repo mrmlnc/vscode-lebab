@@ -1,6 +1,6 @@
 # VS Code Plugin for Lebab
 
-> Turn your ES5 code into readable ES6 (sugar-syntax). It does the opposite of what Babel does.
+> [Lebab](https://github.com/mohebifar/lebab) transpiles your ES5 code into readable ES2015 (sugar-syntax). It does exactly the opposite of what Babel does.
 
 ![VS Code Plugin for Lebab](https://cloud.githubusercontent.com/assets/7034281/17309754/0265b054-5849-11e6-9e64-51d4a19f1180.gif)
 
