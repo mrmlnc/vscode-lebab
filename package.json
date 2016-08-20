@@ -34,12 +34,14 @@
           "type": "array",
           "default": [
             "arrow",
-            "let",
+            "for-of",
             "arg-spread",
             "obj-method",
             "obj-shorthand",
             "no-strict",
-            "commonjs"
+            "commonjs",
+            "exponent",
+            "multi-var"
           ],
           "description": "Convert your old-fashioned code with a specific transformation."
         },

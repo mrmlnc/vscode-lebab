@@ -24,19 +24,21 @@ Press `F1` and run the command named `Lebab: convert JavaScript code from ES5 to
 **lebab.transforms**
 
   * Type: `Array`
-  * Default: `['arrow', 'let', 'arg-spread', 'obj-method', 'obj-shorthand', 'no-strict', 'commonjs']`
+  * Default: `['arrow', 'for-of', 'arg-spread', 'obj-method', 'obj-shorthand', 'no-strict', 'commonjs', 'exponent', 'multi-var']`
 
 All transforms are available in the [official repository Lebab](https://github.com/mohebifar/lebab/blob/master/README.md#features-and-known-limitations).
 
 By default enabled only safe transforms:
 
   * arrow
-  * let
+  * for-of
   * arg-spread
   * obj-method
   * obj-shorthand
   * no-strict
   * commonjs
+  * exponent
+  * multi-var
 
 **lebab.skipWarnings**
 
