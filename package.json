@@ -58,7 +58,7 @@
     "xo": "^0.16.0"
   },
   "dependencies": {
-    "lebab": "2.6.0"
+    "lebab": "2.6.1"
   },
   "scripts": {
     "test": "xo"
