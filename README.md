@@ -24,11 +24,9 @@ Press `F1` and run the command named `Lebab: convert JavaScript code from ES5 to
 **lebab.transforms**
 
   * Type: `Array`
-  * Default: see below
+  * Default: [safe transforms](https://github.com/lebab/lebab#safe-transforms).
 
 All transforms are available in the [official repository Lebab](https://github.com/mohebifar/lebab/blob/master/README.md#features-and-known-limitations).
-
-By default enabled only [safe transforms](https://github.com/lebab/lebab#safe-transforms).
 
 **lebab.skipWarnings**
 
