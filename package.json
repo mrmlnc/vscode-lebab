@@ -6,7 +6,7 @@
   "publisher": "mrmlnc",
   "license": "MIT",
   "engines": {
-    "vscode": "^1.0.0"
+    "vscode": "^1.7.0"
   },
   "icon": "icon.png",
   "homepage": "https://github.com/mrmlnc/vscode-lebab/blob/master/README.md",
@@ -20,14 +20,12 @@
   "activationEvents": [
     "onCommand:lebab.convert"
   ],
-  "main": "./extension.js",
+  "main": "./out/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "lebab.convert",
-        "title": "Lebab: convert JavaScript code from ES5 to ES2015"
-      }
-    ],
+    "commands": [{
+      "command": "lebab.convert",
+      "title": "Lebab: convert JavaScript code from ES5 to ES2015"
+    }],
     "configuration": {
       "type": "object",
       "title": "Lebab configuration",
@@ -58,43 +56,21 @@
     }
   },
   "devDependencies": {
-    "vscode": "^1.0.3",
-    "xo": "^0.17.1"
+    "tslint": "^4.3.1",
+    "tslint-config-xo": "^1.1.0",
+    "typescript": "^2.1.4",
+    "vscode": "^1.0.3"
   },
   "dependencies": {
     "lebab": "2.7.0"
   },
   "scripts": {
-    "test": "xo"
-  },
-  "xo": {
-    "rules": {
-      "no-var": 2,
-      "prefer-const": [
-        2,
-        {
-          "destructuring": "all"
-        }
-      ],
-      "space-before-function-paren": [
-        2,
-        "never"
-      ],
-      "babel/arrow-parens": [
-        2,
-        "always"
-      ],
-      "babel/object-curly-spacing": [
-        2,
-        "always"
-      ],
-      "babel/generator-star-spacing": [
-        2,
-        "after"
-      ]
-    },
-    "envs": [
-      "node"
-    ]
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "clean": "rimraf out",
+    "lint": "tslint src/**/*.ts",
+    "compile": "tsc",
+    "test": "rimraf .tmp && mocha out/{,**/}*.spec.js -s 0",
+    "build": "npm run clean && npm run lint && npm run compile && npm test",
+    "watch": "npm run clean && npm run lint && npm run compile -- --sourceMap --watch"
   }
 }
