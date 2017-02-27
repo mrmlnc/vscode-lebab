@@ -59,7 +59,7 @@
     "tslint": "^4.3.1",
     "tslint-config-xo": "^1.1.0",
     "typescript": "^2.1.4",
-    "vscode": "^1.0.3"
+    "vscode": "^1.0.4"
   },
   "dependencies": {
     "lebab": "2.7.0"
