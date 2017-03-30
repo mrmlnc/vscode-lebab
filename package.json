@@ -62,7 +62,7 @@
     "vscode": "^1.0.3"
   },
   "dependencies": {
-    "lebab": "2.7.0"
+    "lebab": "2.7.2"
   },
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
