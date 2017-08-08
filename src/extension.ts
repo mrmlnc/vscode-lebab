@@ -38,7 +38,7 @@ function makeDiagnostic(problem: IProblem, stringLength: number) {
 function transformRange(document: vscode.TextDocument, range: vscode.Range, options: IOptions, collection: vscode.DiagnosticCollection, selection = false): ITask {
 	const text = document.getText(range);
 
-	let result = {
+	let result: { code: string; warnings: any[] } = {
 		code: text,
 		warnings: []
 	};

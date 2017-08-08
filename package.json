@@ -22,10 +22,12 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [{
-      "command": "lebab.convert",
-      "title": "Lebab: convert JavaScript code from ES5 to ES2015"
-    }],
+    "commands": [
+      {
+        "command": "lebab.convert",
+        "title": "Lebab: convert JavaScript code from ES5 to ES2015"
+      }
+    ],
     "configuration": {
       "type": "object",
       "title": "Lebab configuration",
@@ -62,7 +64,8 @@
     "vscode": "^1.1.4"
   },
   "dependencies": {
-    "lebab": "2.7.5"
+    "lebab": "2.7.5",
+    "tslib": "^1.7.1"
   },
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
