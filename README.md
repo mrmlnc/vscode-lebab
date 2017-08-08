@@ -4,6 +4,14 @@
 
 ![VS Code Plugin for Lebab](https://cloud.githubusercontent.com/assets/7034281/17309754/0265b054-5849-11e6-9e64-51d4a19f1180.gif)
 
+## Donate
+
+If you want to thank me, or promote your Issue.
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/mrmlnc)
+
+> Sorry, but I have work and support for plugins and modules requires some time after work. I will be glad of your support or PR's.
+
 ## Install
 
   * Press `F1` and select `Extensions: Install Extensions`.
