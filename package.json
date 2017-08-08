@@ -43,7 +43,6 @@
             "obj-method",
             "obj-shorthand",
             "no-strict",
-            "commonjs",
             "exponent",
             "multi-var"
           ],
