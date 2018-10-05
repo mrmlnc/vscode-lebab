@@ -35,16 +35,24 @@
         "lebab.transforms": {
           "type": "array",
           "default": [
-            "arrow",
-            "for-of",
-            "for-each",
             "arg-rest",
             "arg-spread",
+            "arrow-return",
+            "arrow",
+            "class",
+            "commonjs",
+            "default-param",
+            "destruct-param",
+            "exponent",
+            "for-each",
+            "for-of",
+            "includes",
+            "let",
+            "multi-var",
+            "no-strict",
             "obj-method",
             "obj-shorthand",
-            "no-strict",
-            "exponent",
-            "multi-var"
+            "template"
           ],
           "description": "Convert your old-fashioned code with a specific transformation."
         },
@@ -63,7 +71,7 @@
     "vscode": "^1.1.4"
   },
   "dependencies": {
-    "lebab": "2.7.5",
+    "lebab": "^3.0.3",
     "tslib": "^1.7.1"
   },
   "scripts": {
