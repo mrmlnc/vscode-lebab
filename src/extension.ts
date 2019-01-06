@@ -1,7 +1,7 @@
 'use strict';
 
-import * as vscode from 'vscode';
 import * as lebab from 'lebab';
+import * as vscode from 'vscode';
 
 interface IProblem {
 	type: string;
@@ -19,15 +19,23 @@ interface IOptions {
 	skipWarnings: boolean;
 }
 
+interface IResult {
+	code: string;
+	warnings: IProblem[];
+}
+
 function getRange(sl: number, sc: number, el: number, ec: number): vscode.Range {
 	const start = new vscode.Position(sl, sc);
 	const end = new vscode.Position(el, ec);
+
 	return new vscode.Range(start, end);
 }
 
-function makeDiagnostic(problem: IProblem, stringLength: number) {
+function makeDiagnostic(problem: IProblem, stringLength: number): vscode.Diagnostic {
 	const line = problem.line - 1;
-	return <vscode.Diagnostic>{
+
+	return {
+		code: problem.type,
 		severity: vscode.DiagnosticSeverity.Warning,
 		range: getRange(line, 0, line, stringLength),
 		source: 'lebab',
@@ -35,38 +43,39 @@ function makeDiagnostic(problem: IProblem, stringLength: number) {
 	};
 }
 
-function transformRange(document: vscode.TextDocument, range: vscode.Range, options: IOptions, collection: vscode.DiagnosticCollection, selection = false): ITask {
+function transformRange(document: vscode.TextDocument, range: vscode.Range, options: IOptions, collection: vscode.DiagnosticCollection, selection: boolean = false): ITask {
 	const text = document.getText(range);
 
-	let result: { code: string; warnings: any[] } = {
+	let result: IResult = {
 		code: text,
 		warnings: []
 	};
 
 	try {
-		result = lebab.transform(text, options.transforms);
+		result = lebab.transform(text, options.transforms) as IResult;
 	} catch (err) {
-		console.error(err);
+		console.error(err as Error);
 	}
 
 	if (!options.skipWarnings && !selection) {
 		collection.set(document.uri, result.warnings.map((problem) => {
 			const problemLine = document.lineAt(problem.line - 1);
+
 			return makeDiagnostic(problem, problemLine.text.length);
 		}));
 	}
 
 	return {
-		code: result.code,
-		range
+		range,
+		code: result.code
 	};
 }
 
-function isEmptyPrimarySelection(selections: vscode.Selection[]) {
+function isEmptyPrimarySelection(selections: vscode.Selection[]): boolean {
 	return selections.length === 0 || (selections.length === 1 && selections[0].isEmpty);
 }
 
-export function activate(context: vscode.ExtensionContext) {
+export function activate(context: vscode.ExtensionContext): void {
 	const command = vscode.commands.registerTextEditorCommand('lebab.convert', (textEditor) => {
 		const options = vscode.workspace.getConfiguration().get<IOptions>('lebab');
 		const document = textEditor.document;
